@@ -8,13 +8,13 @@ import * as THREE from "three";
 function TechRings() {
   const groupRef = useRef<THREE.Group>(null);
 
-  // Create an array of rings with different parameters
+  // Each ring's rotation is now a readonly tuple
   const rings = [
-    { radius: 3, tube: 0.1, color: "#06b6d4", speed: 0.5, rotation: [0, 0, 0] },
-    { radius: 2.5, tube: 0.08, color: "#3b82f6", speed: -0.4, rotation: [Math.PI / 3, 0, 0] },
-    { radius: 3.5, tube: 0.12, color: "#8b5cf6", speed: 0.3, rotation: [0, 0, Math.PI / 4] },
-    { radius: 2, tube: 0.06, color: "#ec4899", speed: 0.6, rotation: [Math.PI / 4, Math.PI / 3, 0] },
-    { radius: 4, tube: 0.09, color: "#22d3ee", speed: -0.2, rotation: [0, Math.PI / 2, 0] },
+    { radius: 3, tube: 0.1, color: "#06b6d4", speed: 0.5, rotation: [0, 0, 0] as const },
+    { radius: 2.5, tube: 0.08, color: "#3b82f6", speed: -0.4, rotation: [Math.PI / 3, 0, 0] as const },
+    { radius: 3.5, tube: 0.12, color: "#8b5cf6", speed: 0.3, rotation: [0, 0, Math.PI / 4] as const },
+    { radius: 2, tube: 0.06, color: "#ec4899", speed: 0.6, rotation: [Math.PI / 4, Math.PI / 3, 0] as const },
+    { radius: 4, tube: 0.09, color: "#22d3ee", speed: -0.2, rotation: [0, Math.PI / 2, 0] as const },
   ];
 
   return (
@@ -31,7 +31,7 @@ interface RingProps {
   tube: number;
   color: string;
   speed: number;
-  rotation: [number, number, number];
+  rotation: readonly [number, number, number]; // accept readonly tuple
 }
 
 function Ring({ radius, tube, color, speed, rotation }: RingProps) {
