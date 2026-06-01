@@ -21,12 +21,13 @@ const cardVariants = {
     transition: {
       delay: i * 0.1,
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      // Use a tuple type for the cubic bezier array
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   }),
 };
 
-// Keywords stagger – slide in from left/right and stop
+// Keywords stagger – slide in from left
 const keywordVariants = {
   hidden: { opacity: 0, x: -80 },
   visible: (i: number) => ({
